@@ -1,10 +1,11 @@
 {
     "homepage": "https://mainendra.github.io",
     "scripts": {
-        "predeploy": "npm run build",
+        "nojekyll": "cp .nojekyll build/",
+        "predeploy": "npm run build && npm run nojekyll",
         "deploy": "gh-pages -b master -d build",
         "start": "snowpack dev",
-        "build": "snowpack build",
+        "build": "snowpack build && npm run nojekyll",
         "test": "web-test-runner \"src/**/*.test.jsx\"",
         "format": "prettier --write \"src/**/*.{js,jsx}\"",
         "lint": "prettier --check \"src/**/*.{js,jsx}\""
