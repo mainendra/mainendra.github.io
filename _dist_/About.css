@@ -1,0 +1,8 @@
+.about-container {
+      display: flex;
+      flex-direction: column;
+      align-self: center;
+      margin: 20px;
+      width: 100%;
+      max-width: 800px;
+}

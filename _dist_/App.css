@@ -1,11 +1,13 @@
+.main-container {
+     display: flex;
+     flex-direction: column;
+     height: inherit;
+}
+
 .contact {
     display: flex;
     justify-content: center;
     margin-top: 50px;
-}
-
-.technical-skills > h3 {
-    margin: 20px 0;
 }
 
 .icon {
