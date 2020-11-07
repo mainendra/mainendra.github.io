@@ -9,7 +9,9 @@ export default function Home2() {
     className: "profile-picture"
   }), /* @__PURE__ */ React.createElement("h3", {
     className: "font-weight-bold"
-  }, "Mainendra Patel"), /* @__PURE__ */ React.createElement("h4", null, "JavaScript developer / Coding enthusiast"), /* @__PURE__ */ React.createElement("div", {
+  }, "Mainendra Patel"), /* @__PURE__ */ React.createElement("h4", {
+    className: "text-center"
+  }, "JavaScript developer / Coding enthusiast"), /* @__PURE__ */ React.createElement("div", {
     className: "contact"
   }, /* @__PURE__ */ React.createElement("a", {
     className: "icon",
