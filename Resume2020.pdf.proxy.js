@@ -1,0 +1,1 @@
+export default "/Resume2020.pdf";
