@@ -14,7 +14,7 @@ module.exports = {
         /* ... */
     },
     buildOptions: {
-        baseUrl: '/',
+        clean: true,
     },
     proxy: {
         /* ... */
