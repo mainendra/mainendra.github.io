@@ -7,7 +7,7 @@ export default function Home() {
         <div className="home-container">
             <img src={me} className="profile-picture" />
             <h3 className="font-weight-bold">Mainendra Patel</h3>
-            <h4>JavaScript developer / Coding enthusiast</h4>
+            <h4 className="text-center">JavaScript developer / Coding enthusiast</h4>
 
             <div className="contact">
                 <a className="icon" href="mailto:mainendra@gmail.com" aria-label="mail">
