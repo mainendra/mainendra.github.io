@@ -8,7 +8,7 @@ const iconStyle = {
 
 export default function Menu() {
     return (
-        <ul className="navbar navbar-light mb-5">
+        <ul className="navbar navbar-light mb-3">
             <li className="navbar-item nav-link mr-auto mb-2 mb-lg-0">
                 <Link className="text-decoration-none link-dark" to="/">M</Link>
             </li>
