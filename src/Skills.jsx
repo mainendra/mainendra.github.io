@@ -1,16 +1,15 @@
 import React from "react";
-import "./Skills.css";
 
 export default function TechnicalSkills() {
     return (
-        <div className="technical-skills">
+        <div className="position-relative flex-column align-self-center w-75">
             <h2 className="font-weight-bold">Technical Skills</h2>
             <hr/>
-            <h3 className="font-weight-bold">Languages</h3>
+            <h3 className="font-weight-bold mt-5">Languages</h3>
             <span>JavaScript, TypeScript, HTML5, CSS3, Python*, Ruby*, Java*</span>
-            <h3 className="font-weight-bold">Frameworks</h3>
+            <h3 className="font-weight-bold mt-5">Frameworks</h3>
             <span>ReactJS, AngularJS, BackboneJS, Vue3*, WPE-Lightning*</span>
-            <h3 className="font-weight-bold">Tools</h3>
+            <h3 className="font-weight-bold mt-5">Tools</h3>
             <ul>
                 <li><span className="font-weight-bold">Version Control: </span>Git, GitHub, Gitlab</li>
                 <li><span className="font-weight-bold">Task & Project Management: </span>Chalk Pages, Jira</li>
@@ -20,7 +19,7 @@ export default function TechnicalSkills() {
                 <li><span className="font-weight-bold">Analytics: </span>Kibana, Tableau</li>
                 <li><span className="font-weight-bold">A11y: </span>NVDA, Jaws, Speech Synthesis</li>
             </ul>
-            <h3 className="font-weight-bold">Paradigms</h3>
+            <h3 className="font-weight-bold mt-5">Paradigms</h3>
             <ul>
                 <li>Accessiblity</li>
                 <li>Agile Software Development</li>

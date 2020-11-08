@@ -11,12 +11,10 @@ import Menu from "./Menu";
 import About from "./About";
 import Skills from "./Skills";
 
-import "./App.css";
-
 export default function App() {
     return (
         <Router>
-            <div className="container-sm main-container">
+            <div className="container-sm d-flex flex-column h-100 mt-3">
                 <Menu />
                 <Switch>
                     <Route exact path="/">
