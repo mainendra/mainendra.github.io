@@ -1,7 +1,7 @@
 import React from "../web_modules/react.js";
 export default function TechnicalSkills() {
   return /* @__PURE__ */ React.createElement("div", {
-    className: "position-relative flex-column align-self-center w-75"
+    className: "position-relative flex-column align-self-center mw-100 w-75"
   }, /* @__PURE__ */ React.createElement("h2", {
     className: "font-weight-bold"
   }, "Technical Skills"), /* @__PURE__ */ React.createElement("hr", null), /* @__PURE__ */ React.createElement("h3", {
