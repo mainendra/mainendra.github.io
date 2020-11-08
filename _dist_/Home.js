@@ -16,13 +16,13 @@ export default function Home() {
   }, /* @__PURE__ */ React.createElement("img", {
     src: me2,
     style: profileStyle,
-    className: "mb-5"
+    className: "mb-4"
   }), /* @__PURE__ */ React.createElement("h3", {
     className: "font-weight-bold"
   }, "Mainendra Patel"), /* @__PURE__ */ React.createElement("h4", {
     className: "text-center"
   }, "JavaScript developer / Coding enthusiast"), /* @__PURE__ */ React.createElement("div", {
-    className: "mt-5"
+    className: "mt-5 mb-5"
   }, /* @__PURE__ */ React.createElement("a", {
     href: "mailto:mainendra@gmail.com",
     "aria-label": "mail"

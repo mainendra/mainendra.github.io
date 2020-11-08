@@ -6,7 +6,7 @@ const iconStyle = {
 };
 export default function Menu() {
   return /* @__PURE__ */ React.createElement("ul", {
-    className: "navbar navbar-light mb-5"
+    className: "navbar navbar-light mb-3"
   }, /* @__PURE__ */ React.createElement("li", {
     className: "navbar-item nav-link mr-auto mb-2 mb-lg-0"
   }, /* @__PURE__ */ React.createElement(Link, {
