@@ -2,8 +2,8 @@ import React from "react";
 
 export default function About() {
     return (
-        <div className="flex-column align-self-center mw-100 w-75">
-            <h2 className="font-weight-bold mt-3">Bio</h2>
+        <div className="position-relative flex-column align-self-center mw-100 w-75">
+            <h2 className="font-weight-bold">Bio</h2>
             <p>12+ years of experience in software development using JavaScript in Video development. Design and develop various navigator applications (to consume video) on set- top-box, mobile, Chromecast, Samsung TV and desktop platforms. 4+ years of experience in A11y on navigator web application for desktops. 2+ years of experience in UI test automation. While working some same domain for long duration, I’ve acquired distinct debugging skill to debug various applications.</p>
             <h3 className="font-weight-bold mt-5">Work Experience</h3>
             <ul className="d-flex flex-column">

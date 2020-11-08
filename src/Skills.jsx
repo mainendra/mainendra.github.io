@@ -2,7 +2,7 @@ import React from "react";
 
 export default function TechnicalSkills() {
     return (
-        <div className="position-relative flex-column align-self-center w-75">
+        <div className="position-relative flex-column align-self-center mw-100 w-75">
             <h2 className="font-weight-bold">Technical Skills</h2>
             <hr/>
             <h3 className="font-weight-bold mt-5">Languages</h3>
