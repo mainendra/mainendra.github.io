@@ -14,7 +14,7 @@ import Skills from "./Skills";
 export default function App() {
     return (
         <Router>
-            <div className="container-sm d-flex flex-column h-100 mt-3">
+            <div className="flex flex-col w-2/3 h-full mx-auto">
                 <Menu />
                 <Switch>
                     <Route exact path="/">
