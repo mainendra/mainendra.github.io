@@ -9,7 +9,7 @@ export default function Home() {
   }), /* @__PURE__ */ React.createElement("h3", {
     className: "mt-10 text-2xl font-bold"
   }, "Mainendra Patel"), /* @__PURE__ */ React.createElement("h4", {
-    className: "mt-2"
+    className: "mt-2 whitespace-nowrap"
   }, "JavaScript developer / Coding enthusiast"), /* @__PURE__ */ React.createElement("div", {
     className: "flex items-center justify-center mt-10 space-x-5"
   }, /* @__PURE__ */ React.createElement("a", {

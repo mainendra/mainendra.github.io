@@ -3,16 +3,22 @@ import {Link} from "../web_modules/react-router-dom.js";
 import resume from "../Resume2020.pdf.proxy.js";
 export default function Menu() {
   return /* @__PURE__ */ React.createElement("ul", {
-    className: "relative flex justify-end w-full mt-10 mb-10 mr-auto space-x-10"
+    className: "relative flex flex-wrap justify-end w-full mt-10 mb-10 mr-auto space-x-10"
   }, /* @__PURE__ */ React.createElement("li", {
-    className: "absolute left-0"
+    className: "absolute left-0 mt-3"
   }, /* @__PURE__ */ React.createElement(Link, {
     to: "/"
-  }, "M")), /* @__PURE__ */ React.createElement("li", null, /* @__PURE__ */ React.createElement(Link, {
+  }, "M")), /* @__PURE__ */ React.createElement("li", {
+    className: "mt-3"
+  }, /* @__PURE__ */ React.createElement(Link, {
     to: "/about"
-  }, "About")), /* @__PURE__ */ React.createElement("li", null, /* @__PURE__ */ React.createElement(Link, {
+  }, "About")), /* @__PURE__ */ React.createElement("li", {
+    className: "mt-3"
+  }, /* @__PURE__ */ React.createElement(Link, {
     to: "/skills"
-  }, "Technical Skills")), /* @__PURE__ */ React.createElement("li", null, /* @__PURE__ */ React.createElement("a", {
+  }, "Technical Skills")), /* @__PURE__ */ React.createElement("li", {
+    className: "mt-3"
+  }, /* @__PURE__ */ React.createElement("a", {
     href: resume,
     download: "mainendra"
   }, /* @__PURE__ */ React.createElement("svg", {
