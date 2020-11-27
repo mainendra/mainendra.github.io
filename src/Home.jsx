@@ -6,7 +6,7 @@ export default function Home() {
         <div className="flex flex-col items-center justify-center flex-1">
             <img src={me} className="w-64 h-64 rounded-full" />
             <h3 className="mt-10 text-2xl font-bold">Mainendra Patel</h3>
-            <h4 className="mt-2">JavaScript developer / Coding enthusiast</h4>
+            <h4 className="mt-2 whitespace-nowrap">JavaScript developer / Coding enthusiast</h4>
 
             <div className="flex items-center justify-center mt-10 space-x-5">
                 <a href="mailto:mainendra@gmail.com" aria-label="mail">
