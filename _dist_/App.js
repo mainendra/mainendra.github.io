@@ -11,7 +11,7 @@ import About2 from "./About.js";
 import Skills2 from "./Skills.js";
 export default function App() {
   return /* @__PURE__ */ React.createElement(Router, null, /* @__PURE__ */ React.createElement("div", {
-    className: "container-sm d-flex flex-column h-100 mt-3"
+    className: "flex flex-col w-2/3 h-full mx-auto"
   }, /* @__PURE__ */ React.createElement(Menu2, null), /* @__PURE__ */ React.createElement(Switch, null, /* @__PURE__ */ React.createElement(Route, {
     exact: true,
     path: "/"

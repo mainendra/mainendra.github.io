@@ -1,37 +1,23 @@
 import React from "../web_modules/react.js";
 import {Link} from "../web_modules/react-router-dom.js";
 import resume from "../Resume2020.pdf.proxy.js";
-const iconStyle = {
-  width: 20
-};
 export default function Menu() {
   return /* @__PURE__ */ React.createElement("ul", {
-    className: "navbar navbar-light mb-3"
+    className: "relative flex justify-end w-full mt-10 mb-10 mr-auto space-x-10"
   }, /* @__PURE__ */ React.createElement("li", {
-    className: "navbar-item nav-link mr-auto mb-2 mb-lg-0"
+    className: "absolute left-0"
   }, /* @__PURE__ */ React.createElement(Link, {
-    className: "text-decoration-none link-dark",
     to: "/"
-  }, "M")), /* @__PURE__ */ React.createElement("li", {
-    className: "navbar-item nav-link mb-2 mb-lg-0"
-  }, /* @__PURE__ */ React.createElement(Link, {
-    className: "text-decoration-none link-dark",
+  }, "M")), /* @__PURE__ */ React.createElement("li", null, /* @__PURE__ */ React.createElement(Link, {
     to: "/about"
-  }, "About")), /* @__PURE__ */ React.createElement("li", {
-    className: "navbar-item nav-link mb-2 mb-lg-0"
-  }, /* @__PURE__ */ React.createElement(Link, {
-    className: "text-decoration-none link-dark",
+  }, "About")), /* @__PURE__ */ React.createElement("li", null, /* @__PURE__ */ React.createElement(Link, {
     to: "/skills"
-  }, "Technical Skills")), /* @__PURE__ */ React.createElement("li", {
-    className: "navbar-item nav-link mb-2 mb-lg-0"
-  }, /* @__PURE__ */ React.createElement("a", {
+  }, "Technical Skills")), /* @__PURE__ */ React.createElement("li", null, /* @__PURE__ */ React.createElement("a", {
     href: resume,
-    download: "mainendra",
-    className: "text-decoration-none link-dark"
+    download: "mainendra"
   }, /* @__PURE__ */ React.createElement("svg", {
     viewBox: "0 0 16 16",
-    className: "bi bi-download",
-    style: iconStyle,
+    className: "w-6 h-6",
     fill: "currentColor",
     xmlns: "http://www.w3.org/2000/svg"
   }, /* @__PURE__ */ React.createElement("path", {
