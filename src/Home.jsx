@@ -3,7 +3,7 @@ import me from "../public/me.png";
 
 export default function Home() {
     return (
-        <div className="flex flex-col items-center justify-center flex-1">
+        <div className="flex flex-col items-center justify-center flex-auto">
             <img src={me} className="w-64 h-64 rounded-full" />
             <h3 className="mt-10 text-2xl font-bold">Mainendra Patel</h3>
             <h4 className="mt-2 whitespace-nowrap">JavaScript developer / Coding enthusiast</h4>
