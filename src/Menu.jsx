@@ -5,7 +5,7 @@ import resume from "../public/Resume2020.pdf";
 
 export default function Menu() {
     return (
-        <ul className="relative flex flex-wrap items-center justify-end w-full mt-10 mb-10 mr-auto space-x-8">
+        <ul className="relative flex flex-wrap items-center justify-end w-full mt-10 mb-16 mr-auto space-x-8">
             <li className="mr-auto">
                 <Link to="/">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
