@@ -2,7 +2,7 @@ import React from "../web_modules/react.js";
 import me2 from "../me.png.proxy.js";
 export default function Home() {
   return /* @__PURE__ */ React.createElement("div", {
-    className: "flex flex-col items-center justify-center flex-1"
+    className: "flex flex-col items-center justify-center flex-auto"
   }, /* @__PURE__ */ React.createElement("img", {
     src: me2,
     className: "w-64 h-64 rounded-full"

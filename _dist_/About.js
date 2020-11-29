@@ -1,7 +1,7 @@
 import React from "../web_modules/react.js";
 export default function About() {
   return /* @__PURE__ */ React.createElement("div", {
-    className: "flex flex-col flex-1 lg:mx-10"
+    className: "flex flex-col flex-auto lg:mx-10"
   }, /* @__PURE__ */ React.createElement("h2", {
     className: "text-2xl font-bold"
   }, "Bio"), /* @__PURE__ */ React.createElement("p", {
