@@ -1,5 +1,6 @@
 import React from "../web_modules/react.js";
 import {Link} from "../web_modules/react-router-dom.js";
+import DarkToggle2 from "./DarkToggle.js";
 import resume from "../Resume2020.pdf.proxy.js";
 export default function Menu() {
   return /* @__PURE__ */ React.createElement("ul", {
@@ -20,6 +21,8 @@ export default function Menu() {
     strokeWidth: "2",
     d: "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
   })))), /* @__PURE__ */ React.createElement("li", {
+    className: "mt-3"
+  }, /* @__PURE__ */ React.createElement(DarkToggle2, null)), /* @__PURE__ */ React.createElement("li", {
     className: "mt-3"
   }, /* @__PURE__ */ React.createElement(Link, {
     to: "/about"
