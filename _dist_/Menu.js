@@ -4,7 +4,7 @@ import DarkToggle2 from "./DarkToggle.js";
 import resume from "../Resume2020.pdf.proxy.js";
 export default function Menu() {
   return /* @__PURE__ */ React.createElement("ul", {
-    className: "relative flex flex-wrap items-center justify-end w-full mt-10 mb-10 mr-auto space-x-8"
+    className: "relative flex flex-wrap items-center justify-end w-full mt-10 mb-16 mr-auto space-x-8"
   }, /* @__PURE__ */ React.createElement("li", {
     className: "mr-auto"
   }, /* @__PURE__ */ React.createElement(Link, {
