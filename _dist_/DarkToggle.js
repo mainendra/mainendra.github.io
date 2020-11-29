@@ -1,9 +1,8 @@
 import React, {useState, useEffect} from "../web_modules/react.js";
 function Sun({onClick}) {
-  return /* @__PURE__ */ React.createElement("div", {
-    tabIndex: "0",
-    onClick,
-    className: "cursor-pointer"
+  return /* @__PURE__ */ React.createElement("a", {
+    href: "",
+    onClick
   }, /* @__PURE__ */ React.createElement("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     fill: "none",
@@ -18,10 +17,9 @@ function Sun({onClick}) {
   })));
 }
 function Moon({onClick}) {
-  return /* @__PURE__ */ React.createElement("div", {
-    tabIndex: "0",
-    onClick,
-    className: "cursor-pointer"
+  return /* @__PURE__ */ React.createElement("a", {
+    href: "",
+    onClick
   }, /* @__PURE__ */ React.createElement("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     fill: "none",
@@ -37,7 +35,8 @@ function Moon({onClick}) {
 }
 export default function DarkToggle() {
   const [dark, setDark] = useState(false);
-  const toggleDark = (dark2) => {
+  const toggleDark = (e, dark2) => {
+    e.preventDefault();
     localStorage.setItem("theme", dark2 ? "dark" : "light");
     setDark(dark2);
     updateThemeClass(dark2);
@@ -55,8 +54,8 @@ export default function DarkToggle() {
     updateThemeClass(dark2);
   }, [setDark]);
   return /* @__PURE__ */ React.createElement("div", null, dark ? /* @__PURE__ */ React.createElement(Sun, {
-    onClick: () => toggleDark(!dark)
+    onClick: (e) => toggleDark(e, !dark)
   }) : /* @__PURE__ */ React.createElement(Moon, {
-    onClick: () => toggleDark(!dark)
+    onClick: (e) => toggleDark(e, !dark)
   }));
 }
