@@ -1,6 +1,6 @@
 This project was bootstrapped with [Vite](https://vitejs.dev).
 
-# tailwindcss
+## tailwindcss
 React application using [tailwindcss](https://tailwindcss.com) for style
 
 ## Available Scripts
