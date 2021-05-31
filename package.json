@@ -2,7 +2,7 @@
     "name": "vite-project",
     "version": "0.0.1",
     "scripts": {
-        "nojekyll": "cp .nojekyll build/",
+        "nojekyll": "cp .nojekyll dist/",
         "predeploy": "npm run build && npm run nojekyll",
         "deploy": "gh-pages -b master -d dist",
         "dev": "vite",
