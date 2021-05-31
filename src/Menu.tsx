@@ -7,7 +7,7 @@ const resume = "Resume2020.pdf";
 export default function Menu() {
     return (
         <ul className="relative flex flex-wrap items-center justify-end w-full mt-10 mb-16 mr-auto space-x-8">
-            <li className="mr-auto">
+            <li className="mr-auto transform hover:scale-150 transition:scale duration-200">
                 <Link to="/">
                     <a>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
@@ -16,10 +16,10 @@ export default function Menu() {
                     </a>
                 </Link>
             </li>
-            <li>
+            <li className="transform hover:scale-150 transition:scale duration-200">
                 <DarkToggle />
             </li>
-            <li>
+            <li className="transform hover:scale-150 transition:scale duration-200">
                 <Link to="/about">
                     <a>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
@@ -28,7 +28,7 @@ export default function Menu() {
                     </a>
                 </Link>
             </li>
-            <li>
+            <li className="transform hover:scale-150 transition:scale duration-200">
                 <Link to="/skills">
                     <a>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
@@ -37,7 +37,7 @@ export default function Menu() {
                     </a>
                 </Link>
             </li>
-            <li>
+            <li className="transform hover:scale-150 transition:scale duration-200">
                 <a href={resume} download="mainendra">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
