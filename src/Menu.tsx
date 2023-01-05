@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "wouter";
 import DarkToggle from './DarkToggle';
 
-const resume = "Resume2022.pdf";
+const resume = "Resume.pdf";
 
 export default function Menu() {
     return (

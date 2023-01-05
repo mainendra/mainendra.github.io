@@ -11,7 +11,7 @@ export default function TechnicalSkills() {
                     <h3 className="mt-10 text-2xl font-bold">Languages</h3>
                     <span>JavaScript, TypeScript, HTML5, CSS3, Python*, Ruby*, Java*</span>
                     <h3 className="mt-10 text-2xl font-bold">Frameworks</h3>
-                    <span>ReactJS, AngularJS, BackboneJS, Vue3*, Svelte*, WPE-Lightning*</span>
+                    <span>ReactJS, AngularJS, BackboneJS, SolidJS*, Svelte*, WPE-Lightning*</span>
                 </DelayChildShow>
                 <DelayChildShow delayClass="delay-300">
                     <h3 className="mt-10 text-2xl font-bold">Tools</h3>
