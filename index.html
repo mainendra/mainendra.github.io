@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="/favicon.ico" />
@@ -9,22 +9,26 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.birds.min.js"></script>
     <script>
-        const dark = localStorage.getItem('theme') === 'dark';
+        const dark = localStorage.getItem('theme') !== 'light';
         if (dark) {
             document.querySelector('html')?.classList?.add('dark');
         }
     </script>
     <style>
+        @font-face {
+            font-family: 'JetBrainsMonoNerdFont';
+            src: url('/JetBrainsMonoNerdFont-Regular.ttf') format('truetype');
+        }
         html.dark body {
             background-color: black;
             color: #E5E7EB;
+            font-size: 18px;
         }
     </style>
-  <script type="module" crossorigin src="/assets/index.568db746.js"></script>
-  <link rel="modulepreload" href="/assets/vendor.d5bcac65.js">
-  <link rel="stylesheet" href="/assets/index.62fa2515.css">
-</head>
-  <body class="transition delay-100 ease-linear bg-gray-50">
+    <script type="module" crossorigin src="/assets/index.0192e0b8.js"></script>
+    <link rel="stylesheet" href="/assets/index.38ff377c.css">
+  </head>
+  <body class="transition delay-100 ease-linear bg-gray-50 font-custom">
     <div id="bg" class="fixed w-full h-full"></div>
     <div id="root" class="absolute w-full h-full"></div>
     <noscript>You need to enable JavaScript to run this app.</noscript>
