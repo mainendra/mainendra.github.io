@@ -15,13 +15,18 @@
         }
     </script>
     <style>
+        @font-face {
+            font-family: 'JetBrainsMonoNerdFont';
+            src: url('/JetBrainsMonoNerdFont-Regular.ttf') format('truetype');
+        }
         html.dark body {
             background-color: black;
             color: #E5E7EB;
+            font-size: 18px;
         }
     </style>
   </head>
-  <body class="transition delay-100 ease-linear bg-gray-50">
+  <body class="transition delay-100 ease-linear bg-gray-50 font-custom">
     <div id="bg" class="fixed w-full h-full"></div>
     <div id="root" class="absolute w-full h-full"></div>
     <noscript>You need to enable JavaScript to run this app.</noscript>

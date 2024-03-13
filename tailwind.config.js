@@ -3,7 +3,11 @@ module.exports = {
   purge: ['index.html', 'src/**/*.tsx'],
   darkMode: 'class', // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+        fontFamily: {
+            custom: ['JetBrainsMonoNerdFont']
+        }
+    },
   },
   variants: {
     extend: {},
