@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="/favicon.ico" />
@@ -9,7 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.birds.min.js"></script>
     <script>
-        const dark = localStorage.getItem('theme') === 'dark';
+        const dark = localStorage.getItem('theme') !== 'light';
         if (dark) {
             document.querySelector('html')?.classList?.add('dark');
         }

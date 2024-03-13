@@ -43,7 +43,7 @@ export default function DarkToggle() {
     };
 
     useEffect(() => {
-        const dark = localStorage.getItem('theme') === 'dark';
+        const dark = localStorage.getItem('theme') !== 'light';
         setDark(dark);
         updateThemeClass(dark);
     }, [setDark]);
