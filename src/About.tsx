@@ -24,7 +24,14 @@ export default function About() {
     return (
         <motion.div variants={containerVariants} initial="hidden" animate="visible" className="flex flex-col flex-auto lg:mx-10">
             <motion.h2 variants={titleVariants} className="text-2xl font-bold">Bio</motion.h2>
-            <motion.p variants={itemVariants} className="text-justify">15+ years of experience in software development using JavaScript in Video development. Design and develop various navigator applications (to consume video) on set- top-box, mobile, Chromecast, Samsung TV, Fire TV, Xbox, LG TV*, Android TV* and desktop platforms. 6+ years of experience in A11y on navigator web application for desktops. 2+ years of experience in UI test automation. While working some same domain for long duration, I’ve acquired distinct debugging skill to debug various applications.</motion.p>
+            <motion.p variants={itemVariants} className="text-justify">
+                Application Developer with 15+ Years of Experience. Extensive expertise in JavaScript and TypeScript within the video domain.
+                Designed and developed video navigator applications across multiple platforms, including set-top boxes, mobile devices, Chromecast, Samsung TV, Fire TV, Xbox, LG TV*, Android TV*, and desktop browsers.
+                Over 7 years of experience improving accessibility in web-based navigator applications for desktops, ensuring compliance with industry standards and enhancing inclusivity.
+                More than 4 years of hands-on experience in UI test automation, improving testing efficiency and product reliability.
+                Developed advanced debugging skills through extensive experience troubleshooting and optimizing applications in a complex, multi-platform environment.
+                Committed to delivering robust, scalable, and user-centric applications that meet the demands of diverse platforms and audiences.
+            </motion.p>
             <motion.h3 variants={titleVariants} className="mt-10 text-2xl font-bold">Work Experience</motion.h3>
             <motion.ul variants={itemVariants} className="list-disc list-inside">
                 <li>Cognizant (North America) - Technical Lead / Dec-2015 till now</li>
