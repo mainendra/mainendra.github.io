@@ -42,7 +42,7 @@ export default function TechnicalSkills() {
             </motion.ul>
             <motion.h3 variants={titleVariants} className="mt-10 text-2xl font-bold">Paradigms</motion.h3>
             <motion.ul variants={itemVariants} className="list-disc list-inside">
-                <li>Accessiblity</li>
+                <li>Accessibility</li>
                 <li>Agile Software Development</li>
                 <li>CI/CD</li>
                 <li>Automated Testing</li>
