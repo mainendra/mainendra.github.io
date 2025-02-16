@@ -30,7 +30,7 @@ export default function Home() {
                 <span className="first-letter:text-red-600"><TextScramble>Patel</TextScramble></span>
             </h3>
             <h4 className="mt-2 whitespace-nowrap">
-                <TextScramble>JavaScript developer / Coding enthusiast</TextScramble>
+                <TextScramble>Technology Enthusiast / Developer</TextScramble>
             </h4>
             <motion.div variants={containerVariants} initial="hidden" animate="visible" className="flex items-center justify-center mt-10 space-x-5">
                 <motion.a variants={itemVariants} whileHover={{ scale: 1.25 }} href="mailto:mainendra@gmail.com" aria-label="mail">
