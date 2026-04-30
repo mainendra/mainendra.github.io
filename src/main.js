@@ -167,9 +167,11 @@ const commands = {
   },
 };
 
+const isMobile = window.innerWidth <= 600;
+
 const term = new Terminal({
   fontFamily: 'JetBrainsMonoNerdFont, monospace',
-  fontSize: 14,
+  fontSize: isMobile ? 12 : 14,
   theme: themes[themeNames[themeIdx]].xterm,
   cursorBlink: true,
   allowProposedApi: true,
@@ -179,6 +181,22 @@ const fitAddon = new FitAddon();
 term.loadAddon(fitAddon);
 term.open(document.getElementById('terminal'));
 fitAddon.fit();
+
+// Hidden input to trigger mobile keyboard
+const mobileInput = document.createElement('input');
+mobileInput.setAttribute('autocapitalize', 'none');
+mobileInput.setAttribute('autocomplete', 'off');
+mobileInput.setAttribute('autocorrect', 'off');
+mobileInput.setAttribute('spellcheck', 'false');
+Object.assign(mobileInput.style, {
+  position: 'absolute', opacity: '0', height: '0', width: '0', left: '-9999px',
+});
+document.body.appendChild(mobileInput);
+
+document.getElementById('terminal').addEventListener('click', () => {
+  if (isMobile) mobileInput.focus();
+  term.focus();
+});
 
 window.addEventListener('resize', () => fitAddon.fit());
 
@@ -232,15 +250,10 @@ function exec(cmd) {
   }
 }
 
-term.onKey(({ key, domEvent }) => {
-  const ev = domEvent;
-  const code = ev.keyCode;
-
+function handleKey(key, code, ev) {
   if (code === 13) { // Enter
     term.writeln('');
-    if (input.trim()) {
-      history.unshift(input);
-    }
+    if (input.trim()) history.unshift(input);
     exec(input);
     input = '';
     cursorPos = 0;
@@ -253,51 +266,47 @@ term.onKey(({ key, domEvent }) => {
       refreshLine();
     }
   } else if (code === 37) { // Left
-    if (cursorPos > 0) {
-      cursorPos--;
-      term.write(key);
-    }
+    if (cursorPos > 0) { cursorPos--; term.write('\x1b[D'); }
   } else if (code === 39) { // Right
-    if (cursorPos < input.length) {
-      cursorPos++;
-      term.write(key);
-    }
-  } else if (code === 38) { // Up - history
+    if (cursorPos < input.length) { cursorPos++; term.write('\x1b[C'); }
+  } else if (code === 38) { // Up
     if (historyIdx < history.length - 1) {
       historyIdx++;
       input = history[historyIdx];
       cursorPos = input.length;
       refreshLine();
     }
-  } else if (code === 40) { // Down - history
+  } else if (code === 40) { // Down
     if (historyIdx > 0) {
       historyIdx--;
       input = history[historyIdx];
       cursorPos = input.length;
       refreshLine();
     } else if (historyIdx === 0) {
-      historyIdx = -1;
-      input = '';
-      cursorPos = 0;
-      refreshLine();
+      historyIdx = -1; input = ''; cursorPos = 0; refreshLine();
     }
-  } else if (code === 9) { // Tab - autocomplete
-    ev.preventDefault();
+  } else if (code === 9) { // Tab
+    if (ev) ev.preventDefault();
     const partial = input.slice(0, cursorPos).toLowerCase();
     const matches = Object.keys(commands).concat(['clear']).filter(c => c.startsWith(partial));
-    if (matches.length === 1) {
-      input = matches[0];
-      cursorPos = input.length;
-      refreshLine();
-    }
-  } else if (ev.key === 'l' && ev.ctrlKey) { // Ctrl+L
-    term.clear();
-    term.write(PROMPT);
-    input = '';
-    cursorPos = 0;
-  } else if (!ev.ctrlKey && !ev.altKey && !ev.metaKey && key.length === 1) {
+    if (matches.length === 1) { input = matches[0]; cursorPos = input.length; refreshLine(); }
+  } else if (ev && ev.key === 'l' && ev.ctrlKey) {
+    term.clear(); term.write(PROMPT); input = ''; cursorPos = 0;
+  } else if (key && key.length === 1 && (!ev || (!ev.ctrlKey && !ev.altKey && !ev.metaKey))) {
     input = input.slice(0, cursorPos) + key + input.slice(cursorPos);
     cursorPos++;
     refreshLine();
   }
+}
+
+term.onKey(({ key, domEvent }) => handleKey(key, domEvent.keyCode, domEvent));
+
+// Mobile keyboard support
+mobileInput.addEventListener('input', (e) => {
+  if (e.data) for (const ch of e.data) handleKey(ch, 0, null);
+  mobileInput.value = '';
+});
+mobileInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') { handleKey(null, 13, e); mobileInput.value = ''; }
+  else if (e.key === 'Backspace') handleKey(null, 8, e);
 });
