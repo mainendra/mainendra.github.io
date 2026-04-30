@@ -1,0 +1,78 @@
+{
+  "about": {
+    "title": "About Me",
+    "text": "Passionate developer with deep expertise in JavaScript, TypeScript and modern web technologies. Skilled in creating scalable, user-friendly, and accessible applications across platforms such as desktop, mobile, browsers, smart TVs, and cloud environments. Strong problem-solving, debugging, and collaboration skills with a focus on quality, performance, and user experience."
+  },
+  "experience": {
+    "title": "Work Experience",
+    "items": [
+      { "name": "Cognizant", "role": "Technical Lead", "period": "Nov 2015 – Present" },
+      { "name": "itaas – a Cognizant Company", "role": "Technical Lead", "period": "Dec 2007 – Nov 2015" },
+      { "name": "Spartan Labs Pvt. Ltd.", "role": "Associate Software Engineer", "period": "Apr 2007 – Dec 2007" }
+    ]
+  },
+  "education": {
+    "title": "Education",
+    "items": [
+      { "degree": "MS - Advanced Information Technology", "school": "I2IT Pune, Maharashtra, India" },
+      { "degree": "BE - Information Technology", "school": "DDIT Nadiad, Gujarat, India" }
+    ]
+  },
+  "skills": {
+    "title": "Technical Skills",
+    "categories": [
+      { "label": "Languages", "value": "JavaScript, TypeScript, HTML5, CSS3, Python*, Ruby*, Java*" },
+      { "label": "Frameworks", "value": "React, Angular, BackboneJS, SolidJS*, Svelte*, LightningJS" },
+      { "label": "Runtime/API", "value": "Node.js, REST APIs, GraphQL*" },
+      { "label": "Build Tools", "value": "Webpack, Gulp, Vite" },
+      { "label": "Version Ctrl", "value": "Git, GitHub, GitLab" },
+      { "label": "CI/CD", "value": "GitLab CI, GitHub Actions" },
+      { "label": "Containers", "value": "Docker" },
+      { "label": "IDE", "value": "Vim, VS Code" },
+      { "label": "Debugging", "value": "Chrome & Firefox DevTools" },
+      { "label": "Analytics", "value": "Kibana, Tableau" },
+      { "label": "Project Mgmt", "value": "Jira" },
+      { "label": "A11y", "value": "WCAG, NVDA, JAWS, Speech Synthesis" },
+      { "label": "Practices", "value": "Agile, Scrum, CI/CD, TDD/BDD, Event-driven & Async Programming, Debugging, Problem Solving" }
+    ],
+    "footnote": "* familiar with"
+  },
+  "highlights": {
+    "title": "Key Highlights",
+    "items": [
+      { "label": "JavaScript & TypeScript", "text": "15+ years building applications using modern frameworks and libraries" },
+      { "label": "Cross-Platform", "text": "Delivered apps for web, mobile, smart TVs (Samsung, LG, Fire TV, Android TV), Chromecast, Xbox, desktop" },
+      { "label": "Accessibility", "text": "7+ years improving inclusivity and WCAG compliance using NVDA, JAWS, and screen readers" },
+      { "label": "Automation", "text": "4+ years implementing UI test automation" },
+      { "label": "Debugging", "text": "Strong ability to troubleshoot, profile, and enhance performance in complex environments" },
+      { "label": "Leadership", "text": "Agile workflows, code reviews, mentoring, and CI/CD best practices" }
+    ]
+  },
+  "projects": {
+    "title": "Projects",
+    "items": [
+      {
+        "name": "Video Navigator",
+        "subtitle": "Cross-Platform Streaming Application",
+        "description": [
+          "Navigator application to consume video on interactive TVs (Samsung, LG, Vizio, GoogleTV), game consoles (Xbox), and streaming devices (Chromecast, FireTV). Features include Live TV, OnDemand Movies, Cloud DVR, program recording, and in-app purchases.",
+          "Supports Dynamic Ad Insertion, trick modes (play/pause, seek, restart), parental controls, and transactional OnDemand.",
+          "Accessibility via Speech Synthesis API, NVDA, JAWS (Windows), and VoiceOver (Mac)."
+        ],
+        "role": "Architecting, designing, development with accessibility support across platforms. Code reviews, mentoring, CI/CD, and maintaining design documentation."
+      }
+    ]
+  },
+  "contact": {
+    "title": "Contact",
+    "items": [
+      { "label": "Location", "value": "Colorado, US" },
+      { "label": "Email", "value": "mainendra@gmail.com" },
+      { "label": "Website", "value": "https://mainendra.github.io" },
+      { "label": "GitHub", "value": "https://github.com/mainendra" },
+      { "label": "LinkedIn", "value": "https://linkedin.com/in/mainendra" },
+      { "label": "Dev.to", "value": "https://dev.to/mainendra" },
+      { "label": "X", "value": "https://twitter.com/mainendrap" }
+    ]
+  }
+}

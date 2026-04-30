@@ -46,6 +46,11 @@ const BOLD = '\x1b[1m';
 const DIM = '\x1b[2m';
 const R = '\x1b[0m';
 
+import content from './content.json';
+
+const PAD = 14;
+const pad = (s) => s.padEnd(PAD);
+
 const commands = {
   help: () => [
     `${BOLD}Available commands:${R}`,
@@ -61,87 +66,58 @@ const commands = {
   ],
 
   about: () => [
-    `${BOLD}${CYAN}About Me${R}`,
+    `${BOLD}${CYAN}${content.about.title}${R}`,
     ``,
-    `Passionate developer with deep expertise in JavaScript, TypeScript and modern web technologies. Skilled in creating scalable, user-friendly, and accessible applications across platforms such as desktop, mobile, browsers, smart TVs, and cloud environments. Strong problem-solving, debugging, and collaboration skills with a focus on quality, performance, and user experience.`,
+    content.about.text,
   ],
 
   experience: () => [
-    `${BOLD}${CYAN}Work Experience${R}`,
+    `${BOLD}${CYAN}${content.experience.title}${R}`,
     ``,
-    `  ${GREEN}●${R} ${BOLD}Cognizant${R} - Technical Lead`,
-    `    ${DIM}Nov 2015 – Present${R}`,
-    `  ${GREEN}●${R} ${BOLD}itaas – a Cognizant Company${R} - Technical Lead`,
-    `    ${DIM}Dec 2007 – Nov 2015${R}`,
-    `  ${GREEN}●${R} ${BOLD}Spartan Labs Pvt. Ltd.${R} - Associate Software Engineer`,
-    `    ${DIM}Apr 2007 – Dec 2007${R}`,
+    ...content.experience.items.flatMap(i => [
+      `  ${GREEN}●${R} ${BOLD}${i.name}${R} - ${i.role}`,
+      `    ${DIM}${i.period}${R}`,
+    ]),
   ],
 
   education: () => [
-    `${BOLD}${CYAN}Education${R}`,
+    `${BOLD}${CYAN}${content.education.title}${R}`,
     ``,
-    `  ${GREEN}●${R} ${BOLD}MS - Advanced Information Technology${R}`,
-    `    I2IT Pune, Maharashtra, India`,
-    `  ${GREEN}●${R} ${BOLD}BE - Information Technology${R}`,
-    `    DDIT Nadiad, Gujarat, India`,
+    ...content.education.items.flatMap(i => [
+      `  ${GREEN}●${R} ${BOLD}${i.degree}${R}`,
+      `    ${i.school}`,
+    ]),
   ],
 
   skills: () => [
-    `${BOLD}${CYAN}Technical Skills${R}`,
+    `${BOLD}${CYAN}${content.skills.title}${R}`,
     ``,
-    `  ${YELLOW}Languages${R}       JavaScript, TypeScript, HTML5, CSS3, Python*, Ruby*, Java*`,
-    `  ${YELLOW}Frameworks${R}      React, Angular, BackboneJS, SolidJS*, Svelte*, LightningJS`,
-    `  ${YELLOW}Runtime/API${R}     Node.js, REST APIs, GraphQL*`,
-    `  ${YELLOW}Build Tools${R}     Webpack, Gulp, Vite`,
-    `  ${YELLOW}Version Ctrl${R}    Git, GitHub, GitLab`,
-    `  ${YELLOW}CI/CD${R}           GitLab CI, GitHub Actions`,
-    `  ${YELLOW}Containers${R}      Docker`,
-    `  ${YELLOW}IDE${R}             Vim, VS Code`,
-    `  ${YELLOW}Debugging${R}       Chrome & Firefox DevTools`,
-    `  ${YELLOW}Analytics${R}       Kibana, Tableau`,
-    `  ${YELLOW}Project Mgmt${R}    Jira`,
-    `  ${YELLOW}A11y${R}            WCAG, NVDA, JAWS, Speech Synthesis`,
+    ...content.skills.categories.map(c => `  ${YELLOW}${pad(c.label)}${R}${c.value}`),
     ``,
-    `  ${YELLOW}Practices${R}       Agile, Scrum, CI/CD, TDD/BDD, Event-driven & Async Programming, Debugging, Problem Solving`,
-    ``,
-    `  ${DIM}* familiar with${R}`,
+    `  ${DIM}${content.skills.footnote}${R}`,
   ],
 
   highlights: () => [
-    `${BOLD}${CYAN}Key Highlights${R}`,
+    `${BOLD}${CYAN}${content.highlights.title}${R}`,
     ``,
-    `  ${GREEN}●${R} ${BOLD}JavaScript & TypeScript:${R} 15+ years building applications using modern frameworks and libraries`,
-    `  ${GREEN}●${R} ${BOLD}Cross-Platform:${R} Delivered apps for web, mobile, smart TVs (Samsung, LG, Fire TV, Android TV), Chromecast, Xbox, desktop`,
-    `  ${GREEN}●${R} ${BOLD}Accessibility:${R} 7+ years improving inclusivity and WCAG compliance using NVDA, JAWS, and screen readers`,
-    `  ${GREEN}●${R} ${BOLD}Automation:${R} 4+ years implementing UI test automation`,
-    `  ${GREEN}●${R} ${BOLD}Debugging:${R} Strong ability to troubleshoot, profile, and enhance performance in complex environments`,
-    `  ${GREEN}●${R} ${BOLD}Leadership:${R} Agile workflows, code reviews, mentoring, and CI/CD best practices`,
+    ...content.highlights.items.map(i => `  ${GREEN}●${R} ${BOLD}${i.label}:${R} ${i.text}`),
   ],
 
   projects: () => [
-    `${BOLD}${CYAN}Projects${R}`,
+    `${BOLD}${CYAN}${content.projects.title}${R}`,
     ``,
-    `  ${GREEN}●${R} ${BOLD}Video Navigator${R} - Cross-Platform Streaming Application`,
-    ``,
-    `Navigator application to consume video on interactive TVs (Samsung, LG, Vizio, GoogleTV), game consoles (Xbox), and streaming devices (Chromecast, FireTV). Features include Live TV, OnDemand Movies, Cloud DVR, program recording, and in-app purchases.`,
-    ``,
-    `Supports Dynamic Ad Insertion, trick modes (play/pause, seek, restart), parental controls, and transactional OnDemand.`,
-    ``,
-    `Accessibility via Speech Synthesis API, NVDA, JAWS (Windows), and VoiceOver (Mac).`,
-    ``,
-    `${DIM}Role: Architecting, designing, development with accessibility support across platforms. Code reviews, mentoring, CI/CD, and maintaining design documentation.${R}`,
+    ...content.projects.items.flatMap(p => [
+      `  ${GREEN}●${R} ${BOLD}${p.name}${R} - ${p.subtitle}`,
+      ``,
+      ...p.description.flatMap(d => [d, ``]),
+      `${DIM}Role: ${p.role}${R}`,
+    ]),
   ],
 
   contact: () => [
-    `${BOLD}${CYAN}Contact${R}`,
+    `${BOLD}${CYAN}${content.contact.title}${R}`,
     ``,
-    `  ${YELLOW}Location${R}   Colorado, US`,
-    `  ${YELLOW}Email${R}      mainendra@gmail.com`,
-    `  ${YELLOW}Website${R}    https://mainendra.github.io`,
-    `  ${YELLOW}GitHub${R}     https://github.com/mainendra`,
-    `  ${YELLOW}LinkedIn${R}   https://linkedin.com/in/mainendra`,
-    `  ${YELLOW}Dev.to${R}     https://dev.to/mainendra`,
-    `  ${YELLOW}X${R}          https://twitter.com/mainendrap`,
+    ...content.contact.items.map(i => `  ${YELLOW}${pad(i.label)}${R}${i.value}`),
   ],
 
   resume: () => {
