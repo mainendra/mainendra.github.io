@@ -68,13 +68,6 @@ const commands = {
     `accessible applications across platforms such as desktop, mobile, browsers,`,
     `smart TVs, and cloud environments. Strong problem-solving, debugging, and`,
     `collaboration skills with a focus on quality, performance, and user experience.`,
-    ``,
-    `${BOLD}Video Navigator${R} - Cross-Platform streaming application`,
-    `Navigator application to consume video on interactive TVs like Samsung, LG,`,
-    `Vizio, GoogleTV, game consoles like Xbox and streaming devices like Chromecast,`,
-    `FireTV, etc. Users can watch Live TV, OnDemand Movies, Record airing programs,`,
-    `Purchase Movies/TV Shows. Supports various playback types such as Free OnDemand,`,
-    `Transactional OnDemand, Cloud DVR and Live TV with Dynamic Ad Insertion.`,
   ],
 
   experience: () => [
