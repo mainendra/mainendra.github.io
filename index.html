@@ -69,7 +69,13 @@
         transition: color 0.3s, border-color 0.3s;
       }
       #theme-btn:hover { color: var(--accent); border-color: var(--accent); }
-      #terminal { flex: 1; overflow: hidden; padding: 0.5rem; }
+      #terminal { flex: 1; min-height: 0; overflow: hidden; margin: 1.5rem 0.5rem; }
+      #terminal .xterm-viewport { overflow-y: hidden !important; }
+      #terminal:hover .xterm-viewport { overflow-y: auto !important; }
+      #terminal .xterm-viewport::-webkit-scrollbar { width: 6px; }
+      #terminal .xterm-viewport::-webkit-scrollbar-track { background: var(--bg); }
+      #terminal .xterm-viewport::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+      #terminal .xterm-viewport::-webkit-scrollbar-thumb:hover { background: var(--fg-dim); }
       #hint {
         padding: 0.4rem 2rem;
         font-size: 0.75rem;
@@ -93,9 +99,10 @@
         #profile h1 { font-size: 1rem; }
         #profile p { font-size: 0.75rem; }
         #hint { padding: 0.3rem 1rem; font-size: 0.65rem; }
+        #terminal { margin: 0.5rem; }
       }
     </style>
-    <script type="module" crossorigin src="/assets/index-DtHW8V5k.js"></script>
+    <script type="module" crossorigin src="/assets/index-BNOy4Qsv.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-DYP7pi_n.css">
   </head>
   <body>
