@@ -8,7 +8,7 @@
     <title>Mainendra's profile</title>
     <script>
       // Set theme vars before first paint to prevent flash
-      var t=parseInt(localStorage.getItem('themeIdx')||'0',10),
+      var t=parseInt(localStorage.getItem('themeIdx')||'2',10),
         d=[['#1a1b26','#13141c','#c0caf5'],['#282a36','#1e1f29','#f8f8f2'],['#282828','#1d2021','#ebdbb2'],['#fdf6e3','#eee8d5','#657b83'],['#ffffff','#f0f0f0','#24292e']],
         c=d[t%d.length];
       document.documentElement.style.cssText='--bg:'+c[0]+';--bg-outer:'+c[1]+';--fg:'+c[2];

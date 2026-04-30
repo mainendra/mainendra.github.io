@@ -26,7 +26,7 @@ const themes = {
 };
 
 const themeNames = Object.keys(themes);
-let themeIdx = parseInt(localStorage.getItem('themeIdx') || '0', 10) % themeNames.length;
+let themeIdx = parseInt(localStorage.getItem('themeIdx') || '2', 10) % themeNames.length;
 
 function applyTheme(t) {
   const root = document.documentElement;
