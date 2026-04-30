@@ -1,29 +1,22 @@
 {
-    "name": "vite-project",
-    "version": "0.0.1",
-    "scripts": {
-        "nojekyll": "cp .nojekyll dist/",
-        "predeploy": "npm run build && npm run nojekyll",
-        "deploy": "gh-pages -b master -d dist",
-        "dev": "vite",
-        "build": "tsc && vite build",
-        "serve": "vite preview"
-    },
-    "dependencies": {
-        "motion": "^12.18.1",
-        "react": "^19.1.0",
-        "react-dom": "^19.1.0",
-        "wouter": "^3.7.1"
-    },
-    "devDependencies": {
-        "@tailwindcss/postcss": "^4.1.10",
-        "@tailwindcss/vite": "^4.1.10",
-        "@types/react": "^19.1.8",
-        "@types/react-dom": "^19.1.6",
-        "@vitejs/plugin-react": "^4.5.2",
-        "gh-pages": "^6.3.0",
-        "tailwindcss": "^4.1.10",
-        "typescript": "^5.8.3",
-        "vite": "^6.3.5"
-    }
+  "name": "mainendra.github.io",
+  "version": "0.0.1",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "nojekyll": "cp .nojekyll dist/",
+    "predeploy": "bun run build && bun run nojekyll",
+    "deploy": "gh-pages -b master -d dist"
+  },
+  "dependencies": {
+    "@xterm/addon-fit": "0.10.0",
+    "@xterm/xterm": "5.5.0"
+  },
+  "devDependencies": {
+    "gh-pages": "6.3.0",
+    "vite": "6.3.5"
+  }
 }
