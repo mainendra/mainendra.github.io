@@ -186,11 +186,8 @@ function clearLine() {
 }
 
 function refreshLine() {
-  clearLine();
-  term.write(input);
-  // move cursor to correct position
   const diff = input.length - cursorPos;
-  if (diff > 0) term.write(`\x1b[${diff}D`);
+  term.write(`\x1b[?25l\x1b[2K\r${PROMPT}${input}${diff > 0 ? `\x1b[${diff}D` : ''}\x1b[?25h`);
 }
 
 function exec(cmd) {
