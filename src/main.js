@@ -63,11 +63,7 @@ const commands = {
   about: () => [
     `${BOLD}${CYAN}About Me${R}`,
     ``,
-    `Passionate developer with deep expertise in JavaScript, TypeScript and`,
-    `modern web technologies. Skilled in creating scalable, user-friendly, and`,
-    `accessible applications across platforms such as desktop, mobile, browsers,`,
-    `smart TVs, and cloud environments. Strong problem-solving, debugging, and`,
-    `collaboration skills with a focus on quality, performance, and user experience.`,
+    `Passionate developer with deep expertise in JavaScript, TypeScript and modern web technologies. Skilled in creating scalable, user-friendly, and accessible applications across platforms such as desktop, mobile, browsers, smart TVs, and cloud environments. Strong problem-solving, debugging, and collaboration skills with a focus on quality, performance, and user experience.`,
   ],
 
   experience: () => [
@@ -106,8 +102,7 @@ const commands = {
     `  ${YELLOW}Project Mgmt${R}    Jira`,
     `  ${YELLOW}A11y${R}            WCAG, NVDA, JAWS, Speech Synthesis`,
     ``,
-    `  ${YELLOW}Practices${R}       Agile, Scrum, CI/CD, TDD/BDD, Event-driven &`,
-    `                  Async Programming, Debugging, Problem Solving`,
+    `  ${YELLOW}Practices${R}       Agile, Scrum, CI/CD, TDD/BDD, Event-driven & Async Programming, Debugging, Problem Solving`,
     ``,
     `  ${DIM}* familiar with${R}`,
   ],
@@ -115,17 +110,12 @@ const commands = {
   highlights: () => [
     `${BOLD}${CYAN}Key Highlights${R}`,
     ``,
-    `  ${GREEN}●${R} ${BOLD}JavaScript & TypeScript:${R} 15+ years building applications`,
-    `    using modern frameworks and libraries`,
-    `  ${GREEN}●${R} ${BOLD}Cross-Platform:${R} Delivered apps for web, mobile, smart TVs`,
-    `    (Samsung, LG, Fire TV, Android TV), Chromecast, Xbox, desktop`,
-    `  ${GREEN}●${R} ${BOLD}Accessibility:${R} 7+ years improving inclusivity and WCAG`,
-    `    compliance using NVDA, JAWS, and screen readers`,
+    `  ${GREEN}●${R} ${BOLD}JavaScript & TypeScript:${R} 15+ years building applications using modern frameworks and libraries`,
+    `  ${GREEN}●${R} ${BOLD}Cross-Platform:${R} Delivered apps for web, mobile, smart TVs (Samsung, LG, Fire TV, Android TV), Chromecast, Xbox, desktop`,
+    `  ${GREEN}●${R} ${BOLD}Accessibility:${R} 7+ years improving inclusivity and WCAG compliance using NVDA, JAWS, and screen readers`,
     `  ${GREEN}●${R} ${BOLD}Automation:${R} 4+ years implementing UI test automation`,
-    `  ${GREEN}●${R} ${BOLD}Debugging:${R} Strong ability to troubleshoot, profile, and`,
-    `    enhance performance in complex environments`,
-    `  ${GREEN}●${R} ${BOLD}Leadership:${R} Agile workflows, code reviews, mentoring,`,
-    `    and CI/CD best practices`,
+    `  ${GREEN}●${R} ${BOLD}Debugging:${R} Strong ability to troubleshoot, profile, and enhance performance in complex environments`,
+    `  ${GREEN}●${R} ${BOLD}Leadership:${R} Agile workflows, code reviews, mentoring, and CI/CD best practices`,
   ],
 
   projects: () => [
@@ -133,20 +123,13 @@ const commands = {
     ``,
     `  ${GREEN}●${R} ${BOLD}Video Navigator${R} - Cross-Platform Streaming Application`,
     ``,
-    `    Navigator application to consume video on interactive TVs (Samsung,`,
-    `    LG, Vizio, GoogleTV), game consoles (Xbox), and streaming devices`,
-    `    (Chromecast, FireTV). Features include Live TV, OnDemand Movies,`,
-    `    Cloud DVR, program recording, and in-app purchases.`,
+    `Navigator application to consume video on interactive TVs (Samsung, LG, Vizio, GoogleTV), game consoles (Xbox), and streaming devices (Chromecast, FireTV). Features include Live TV, OnDemand Movies, Cloud DVR, program recording, and in-app purchases.`,
     ``,
-    `    Supports Dynamic Ad Insertion, trick modes (play/pause, seek,`,
-    `    restart), parental controls, and transactional OnDemand.`,
+    `Supports Dynamic Ad Insertion, trick modes (play/pause, seek, restart), parental controls, and transactional OnDemand.`,
     ``,
-    `    Accessibility via Speech Synthesis API, NVDA, JAWS (Windows),`,
-    `    and VoiceOver (Mac).`,
+    `Accessibility via Speech Synthesis API, NVDA, JAWS (Windows), and VoiceOver (Mac).`,
     ``,
-    `    ${DIM}Role: Architecting, designing, development with accessibility`,
-    `    support across platforms. Code reviews, mentoring, CI/CD, and`,
-    `    maintaining design documentation.${R}`,
+    `${DIM}Role: Architecting, designing, development with accessibility support across platforms. Code reviews, mentoring, CI/CD, and maintaining design documentation.${R}`,
   ],
 
   contact: () => [
@@ -244,7 +227,32 @@ function exec(cmd) {
   const fn = commands[trimmed];
   if (fn) {
     const lines = fn();
-    for (const line of lines) term.writeln(line);
+    for (const line of lines) {
+      // Word-wrap plain text lines to terminal width
+      const cols = term.cols;
+      // Strip ANSI to measure visible length
+      const strip = s => s.replace(/\x1b\[[0-9;]*m/g, '');
+      if (strip(line).length > cols && !line.startsWith('  ')) {
+        // Split into words preserving ANSI codes
+        const words = line.split(' ');
+        let current = '';
+        let visLen = 0;
+        for (const word of words) {
+          const wLen = strip(word).length;
+          if (visLen + (visLen > 0 ? 1 : 0) + wLen > cols && visLen > 0) {
+            term.writeln(current);
+            current = word;
+            visLen = wLen;
+          } else {
+            current += (visLen > 0 ? ' ' : '') + word;
+            visLen += (visLen > 0 ? 1 : 0) + wLen;
+          }
+        }
+        if (current) term.writeln(current);
+      } else {
+        term.writeln(line);
+      }
+    }
   } else {
     term.writeln(`${DIM}Command not found: ${trimmed}. Type ${GREEN}help${R}${DIM} for available commands.${R}`);
   }
