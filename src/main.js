@@ -291,3 +291,30 @@ mobileInput.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') { handleKey(null, 13, e); mobileInput.value = ''; }
   else if (e.key === 'Backspace') handleKey(null, 8, e);
 });
+
+// Swipe gestures for mobile
+if (isMobile) {
+  const termEl = document.getElementById('terminal');
+  let startX, startY;
+  termEl.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+  }, { passive: true });
+  termEl.addEventListener('touchend', (e) => {
+    const dx = e.changedTouches[0].clientX - startX;
+    const dy = e.changedTouches[0].clientY - startY;
+    const absDx = Math.abs(dx);
+    const absDy = Math.abs(dy);
+    if (Math.max(absDx, absDy) < 30) return; // too short
+    if (absDx > absDy) {
+      // Horizontal swipe
+      if (absDx > 100) handleKey(null, 9, null); // long swipe = tab
+      else if (dx > 0) handleKey(null, 39, null); // right = cursor right
+      else handleKey(null, 37, null); // left = cursor left
+    } else {
+      // Vertical swipe
+      if (dy < 0) handleKey(null, 38, null); // up = history prev
+      else handleKey(null, 40, null); // down = history next
+    }
+  }, { passive: true });
+}
