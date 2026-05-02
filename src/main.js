@@ -114,11 +114,15 @@ const commands = {
     ]),
   ],
 
-  contact: () => [
-    `${BOLD}${CYAN}${content.contact.title}${R}`,
-    ``,
-    ...content.contact.items.map(i => `  ${YELLOW}${pad(i.label)}${R}${i.value}`),
-  ],
+  contact: () => {
+    const maxVal = term.cols - PAD - 2;
+    const link = (url) => `\x1b]8;;${url}\x07${url.length > maxVal ? url.slice(0, maxVal - 1) + '…' : url}\x1b]8;;\x07`;
+    return [
+      `${BOLD}${CYAN}${content.contact.title}${R}`,
+      ``,
+      ...content.contact.items.map(i => `  ${YELLOW}${pad(i.label)}${R}${i.value.startsWith('http') ? link(i.value) : i.value}`),
+    ];
+  },
 
   resume: () => {
     window.open('/Resume.pdf', '_blank');
@@ -210,30 +214,40 @@ function exec(cmd) {
   if (fn) {
     const lines = fn();
     for (const line of lines) {
-      // Word-wrap plain text lines to terminal width
       const cols = term.cols;
-      // Strip ANSI to measure visible length
       const strip = s => s.replace(/\x1b\[[0-9;]*m/g, '');
-      if (strip(line).length > cols && !line.startsWith('  ')) {
-        // Split into words preserving ANSI codes
-        const words = line.split(' ');
-        let current = '';
-        let visLen = 0;
-        for (const word of words) {
-          const wLen = strip(word).length;
-          if (visLen + (visLen > 0 ? 1 : 0) + wLen > cols && visLen > 0) {
-            term.writeln(current);
-            current = word;
-            visLen = wLen;
-          } else {
-            current += (visLen > 0 ? ' ' : '') + word;
-            visLen += (visLen > 0 ? 1 : 0) + wLen;
-          }
+      const visLine = strip(line);
+      if (visLine.length <= cols) { term.writeln(line); continue; }
+      // Detect leading visible indent (e.g. "  ● " or "  Label         value")
+      const prefixMatch = visLine.match(/^(\s*(?:●\s|\S+(?:\s\S+)*\s{2,}))/);      const indent = prefixMatch ? ' '.repeat(prefixMatch[1].length) : '';
+      // Find raw prefix in original line (with ANSI codes) matching visible prefix length
+      let rawPrefix = '';
+      if (prefixMatch) {
+        const pLen = prefixMatch[1].length;
+        let vis = 0, inEsc = false;
+        for (let j = 0; j < line.length && vis < pLen; j++) {
+          rawPrefix += line[j];
+          if (line[j] === '\x1b') inEsc = true;
+          else if (inEsc && /[a-zA-Z]/.test(line[j])) inEsc = false;
+          else if (!inEsc) vis++;
         }
-        if (current) term.writeln(current);
-      } else {
-        term.writeln(line);
       }
+      const rest = rawPrefix ? line.slice(rawPrefix.length) : line;
+      const words = rest.split(' ').filter(w => w !== '');
+      let current = rawPrefix + words[0];
+      let visLen = strip(current).length;
+      for (let i = 1; i < words.length; i++) {
+        const wLen = strip(words[i]).length;
+        if (visLen + 1 + wLen > cols && visLen > 0) {
+          term.writeln(current);
+          current = indent + words[i];
+          visLen = indent.length + wLen;
+        } else {
+          current += ' ' + words[i];
+          visLen += 1 + wLen;
+        }
+      }
+      if (current) term.writeln(current);
     }
   } else {
     term.writeln(`${DIM}Command not found: ${trimmed}. Type ${GREEN}help${R}${DIM} for available commands.${R}`);
