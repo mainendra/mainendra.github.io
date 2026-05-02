@@ -185,9 +185,18 @@ function clearLine() {
   term.write(`\x1b[2K\r${PROMPT}`);
 }
 
+const allCmds = Object.keys(commands).concat(['clear']);
+
+function getSuggestion() {
+  if (!input) return '';
+  const match = allCmds.find(c => c.startsWith(input.toLowerCase()) && c !== input.toLowerCase());
+  return match ? match.slice(input.length) : '';
+}
+
 function refreshLine() {
-  const diff = input.length - cursorPos;
-  term.write(`\x1b[?25l\x1b[2K\r${PROMPT}${input}${diff > 0 ? `\x1b[${diff}D` : ''}\x1b[?25h`);
+  const hint = cursorPos === input.length ? getSuggestion() : '';
+  const diff = input.length + hint.length - cursorPos;
+  term.write(`\x1b[?25l\x1b[2K\r${PROMPT}${input}${hint ? `${DIM}${hint}${R}` : ''}${diff > 0 ? `\x1b[${diff}D` : ''}\x1b[?25h`);
 }
 
 function exec(cmd) {
@@ -250,6 +259,7 @@ function handleKey(key, code, ev) {
     if (cursorPos > 0) { cursorPos--; term.write('\x1b[D'); }
   } else if (code === 39) { // Right
     if (cursorPos < input.length) { cursorPos++; term.write('\x1b[C'); }
+    else { const s = getSuggestion(); if (s) { input += s; cursorPos = input.length; refreshLine(); } }
   } else if (code === 38) { // Up
     if (historyIdx < history.length - 1) {
       historyIdx++;
@@ -268,9 +278,7 @@ function handleKey(key, code, ev) {
     }
   } else if (code === 9) { // Tab
     if (ev) ev.preventDefault();
-    const partial = input.slice(0, cursorPos).toLowerCase();
-    const matches = Object.keys(commands).concat(['clear']).filter(c => c.startsWith(partial));
-    if (matches.length === 1) { input = matches[0]; cursorPos = input.length; refreshLine(); }
+    const s = getSuggestion(); if (s) { input += s; cursorPos = input.length; refreshLine(); }
   } else if (ev && ev.key === 'l' && ev.ctrlKey) {
     term.clear(); term.write(PROMPT); input = ''; cursorPos = 0;
   } else if (key && key.length === 1 && (!ev || (!ev.ctrlKey && !ev.altKey && !ev.metaKey))) {
