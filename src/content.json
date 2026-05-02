@@ -6,7 +6,7 @@
   "experience": {
     "title": "Work Experience",
     "items": [
-      { "name": "Cognizant", "role": "Technical Lead", "period": "Nov 2015 – Present" },
+      { "name": "Cognizant", "role": "Technical Lead / Functional Specialist", "period": "Nov 2015 – Present" },
       { "name": "itaas – a Cognizant Company", "role": "Technical Lead", "period": "Dec 2007 – Nov 2015" },
       { "name": "Spartan Labs Pvt. Ltd.", "role": "Associate Software Engineer", "period": "Apr 2007 – Dec 2007" }
     ]
