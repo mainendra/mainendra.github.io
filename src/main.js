@@ -418,13 +418,15 @@ mobileInput.addEventListener('keydown', (e) => {
 // Swipe gestures for mobile
 if (isMobile) {
   const termEl = document.getElementById('terminal');
+  const initialHeight = window.innerHeight;
+  const kbOpen = () => window.innerHeight < initialHeight * 0.75;
   let startX, startY;
   termEl.addEventListener('touchstart', (e) => {
     startX = e.touches[0].clientX;
     startY = e.touches[0].clientY;
   }, { passive: true });
   termEl.addEventListener('touchmove', (e) => {
-    e.preventDefault();
+    if (!kbOpen()) e.preventDefault();
   }, { passive: false });
   termEl.addEventListener('touchend', (e) => {
     const dx = e.changedTouches[0].clientX - startX;
@@ -437,8 +439,8 @@ if (isMobile) {
       if (absDx > 100) handleKey(null, 9, null); // long swipe = tab
       else if (dx > 0) handleKey(null, 39, null); // right = cursor right
       else handleKey(null, 37, null); // left = cursor left
-    } else {
-      // Vertical swipe
+    } else if (!kbOpen()) {
+      // Vertical swipe — only history when keyboard is closed
       if (dy < 0) handleKey(null, 38, null); // up = history prev
       else handleKey(null, 40, null); // down = history next
     }
