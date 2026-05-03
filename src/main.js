@@ -139,6 +139,7 @@ const commands = {
       return [`${GREEN}Theme: ${themeNames[themeIdx]}${R}`];
     }
     pickerIdx = themeIdx;
+    pickerOrigIdx = themeIdx;
     pickerActive = true;
     renderPicker();
     return [];
@@ -307,6 +308,7 @@ function exec(cmd) {
 
 let pickerActive = false;
 let pickerIdx = 0;
+let pickerOrigIdx = 0;
 
 function renderPicker() {
   // Clear picker lines and redraw
@@ -316,7 +318,7 @@ function renderPicker() {
     const label = i === pickerIdx ? `${BOLD}${themeNames[i]}${R}` : `${DIM}${themeNames[i]}${R}`;
     term.writeln(`${marker}${label}`);
   }
-  term.writeln(`${DIM}  ↑↓ navigate · Enter select · Esc cancel${R}`);
+  term.writeln(`${DIM}  ↑↓/j/k navigate · Enter select · Esc cancel${R}`);
 }
 
 function clearPicker() {
@@ -328,13 +330,13 @@ function clearPicker() {
 
 function handleKey(key, code, ev) {
   if (pickerActive) {
-    if (code === 38) { // Up
+    if (code === 38 || (ev && ev.key === 'k')) { // Up / k
       clearPicker();
       pickerIdx = (pickerIdx - 1 + themeNames.length) % themeNames.length;
       themeIdx = pickerIdx;
       switchTheme();
       renderPicker();
-    } else if (code === 40) { // Down
+    } else if (code === 40 || (ev && ev.key === 'j')) { // Down / j
       clearPicker();
       pickerIdx = (pickerIdx + 1) % themeNames.length;
       themeIdx = pickerIdx;
@@ -348,6 +350,8 @@ function handleKey(key, code, ev) {
     } else if (code === 27 || (ev && ev.key === 'Escape')) { // Esc
       clearPicker();
       pickerActive = false;
+      themeIdx = pickerOrigIdx;
+      switchTheme();
       term.write(PROMPT);
     }
     return;
