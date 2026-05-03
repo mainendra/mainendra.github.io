@@ -421,14 +421,14 @@ if (isMobile) {
   const initialHeight = window.innerHeight;
   const kbOpen = () => window.innerHeight < initialHeight * 0.75;
   let startX, startY;
-  termEl.addEventListener('touchstart', (e) => {
+  document.addEventListener('touchstart', (e) => {
     startX = e.touches[0].clientX;
     startY = e.touches[0].clientY;
   }, { passive: true });
-  termEl.addEventListener('touchmove', (e) => {
+  document.addEventListener('touchmove', (e) => {
     if (!kbOpen()) e.preventDefault();
   }, { passive: false });
-  termEl.addEventListener('touchend', (e) => {
+  document.addEventListener('touchend', (e) => {
     const dx = e.changedTouches[0].clientX - startX;
     const dy = e.changedTouches[0].clientY - startY;
     const absDx = Math.abs(dx);
