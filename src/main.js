@@ -318,7 +318,7 @@ function renderPicker() {
     const label = i === pickerIdx ? `${BOLD}${themeNames[i]}${R}` : `${DIM}${themeNames[i]}${R}`;
     term.writeln(`${marker}${label}`);
   }
-  term.writeln(`${DIM}  ↑↓/j/k navigate · Enter select · Esc cancel${R}`);
+  term.writeln(`${DIM}  ↑↓/j/k navigate · Enter select · q/Esc cancel${R}`);
 }
 
 function clearPicker() {
@@ -347,7 +347,7 @@ function handleKey(key, code, ev) {
       pickerActive = false;
       term.writeln(`${GREEN}Theme: ${themeNames[themeIdx]}${R}`);
       term.write(PROMPT);
-    } else if (code === 27 || (ev && ev.key === 'Escape')) { // Esc
+    } else if (code === 27 || (ev && (ev.key === 'Escape' || ev.key === 'q'))) { // Esc / q
       clearPicker();
       pickerActive = false;
       themeIdx = pickerOrigIdx;
