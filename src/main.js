@@ -152,6 +152,7 @@ const term = new Terminal({
   fontSize: isMobile ? 12 : 14,
   theme: themes[themeNames[themeIdx]].xterm,
   cursorBlink: true,
+  scrollback: 0,
   allowProposedApi: true,
 });
 
@@ -422,6 +423,9 @@ if (isMobile) {
     startX = e.touches[0].clientX;
     startY = e.touches[0].clientY;
   }, { passive: true });
+  termEl.addEventListener('touchmove', (e) => {
+    e.preventDefault();
+  }, { passive: false });
   termEl.addEventListener('touchend', (e) => {
     const dx = e.changedTouches[0].clientX - startX;
     const dy = e.changedTouches[0].clientY - startY;
