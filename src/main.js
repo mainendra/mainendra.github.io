@@ -62,6 +62,7 @@ const commands = {
     `  ${CYAN}projects${R}    Project details`,
     `  ${CYAN}contact${R}     Get in touch`,
     `  ${CYAN}resume${R}      Download resume`,
+    `  ${CYAN}theme${R}       Switch theme`,
     `  ${CYAN}clear${R}       Clear terminal`,
   ],
 
@@ -128,6 +129,20 @@ const commands = {
     window.open('/Resume.pdf', '_blank');
     return [`${GREEN}Opening resume...${R}`];
   },
+
+  theme: (arg) => {
+    if (arg) {
+      const idx = themeNames.findIndex(n => n.toLowerCase().replace(/\s+/g, '') === arg.toLowerCase().replace(/\s+/g, ''));
+      if (idx === -1) return [`${DIM}Unknown theme. Available: ${themeNames.join(', ')}${R}`];
+      themeIdx = idx;
+      switchTheme();
+      return [`${GREEN}Theme: ${themeNames[themeIdx]}${R}`];
+    }
+    pickerIdx = themeIdx;
+    pickerActive = true;
+    renderPicker();
+    return [];
+  },
 };
 
 const isMobile = window.innerWidth <= 600;
@@ -156,19 +171,56 @@ Object.assign(mobileInput.style, {
 });
 document.body.appendChild(mobileInput);
 
-document.getElementById('terminal').addEventListener('click', () => {
+// Subtle "use keyboard" toast on mouse interaction
+const toast = document.createElement('div');
+toast.id = 'kb-toast';
+toast.textContent = '⌨ Try using keyboard commands instead!';
+Object.assign(toast.style, {
+  position: 'fixed', bottom: '1.5rem', left: '50%', transform: 'translateX(-50%)',
+  padding: '0.5rem 1rem', borderRadius: '6px', fontSize: '0.8rem',
+  background: 'var(--bg-hint)', color: 'var(--fg-dim)', border: '1px solid var(--border)',
+  opacity: '0', transition: 'opacity 0.3s', pointerEvents: 'none', zIndex: '10',
+});
+document.body.appendChild(toast);
+let toastTimer, moveStart;
+
+function showKbToast() {
+  toast.style.opacity = '1';
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.style.opacity = '0', 2000);
+}
+
+const termEl = document.getElementById('terminal');
+
+if (!isMobile) {
+  moveStart = { x: 0, y: 0 };
+  document.addEventListener('mousemove', (e) => {
+    const d = Math.hypot(e.clientX - moveStart.x, e.clientY - moveStart.y);
+    if (d > 100) { showKbToast(); moveStart = { x: e.clientX, y: e.clientY }; }
+  });
+  document.addEventListener('click', () => { showKbToast(); term.focus(); });
+}
+
+termEl.addEventListener('click', () => {
   if (isMobile) mobileInput.focus();
   term.focus();
 });
 
 window.addEventListener('resize', () => fitAddon.fit());
 
-document.getElementById('theme-btn').addEventListener('click', () => {
-  themeIdx = (themeIdx + 1) % themeNames.length;
+function switchTheme() {
   localStorage.setItem('themeIdx', themeIdx);
   const t = themes[themeNames[themeIdx]];
   applyTheme(t);
   term.options.theme = t.xterm;
+}
+
+document.getElementById('theme-btn').addEventListener('click', () => {
+  if (pickerActive) return;
+  input = 'theme';
+  cursorPos = input.length;
+  refreshLine();
+  handleKey(null, 13, null);
 });
 
 term.write(PROMPT + 'help');
@@ -204,15 +256,17 @@ function refreshLine() {
 }
 
 function exec(cmd) {
-  const trimmed = cmd.trim().toLowerCase();
-  if (!trimmed) return;
-  if (trimmed === 'clear') {
+  const parts = cmd.trim().toLowerCase().split(/\s+/);
+  const name = parts[0];
+  const arg = parts.slice(1).join(' ');
+  if (!name) return;
+  if (name === 'clear') {
     term.clear();
     return;
   }
-  const fn = commands[trimmed];
+  const fn = commands[name];
   if (fn) {
-    const lines = fn();
+    const lines = fn(arg);
     for (const line of lines) {
       const cols = term.cols;
       const strip = s => s.replace(/\x1b\[[0-9;]*m/g, '');
@@ -250,11 +304,57 @@ function exec(cmd) {
       if (current) term.writeln(current);
     }
   } else {
-    term.writeln(`${DIM}Command not found: ${trimmed}. Type ${GREEN}help${R}${DIM} for available commands.${R}`);
+    term.writeln(`${DIM}Command not found: ${name}. Type ${GREEN}help${R}${DIM} for available commands.${R}`);
   }
 }
 
+let pickerActive = false;
+let pickerIdx = 0;
+
+function renderPicker() {
+  // Clear picker lines and redraw
+  term.write(`\x1b[?25l`); // hide cursor
+  for (let i = 0; i < themeNames.length; i++) {
+    const marker = i === pickerIdx ? `${GREEN} ❯ ` : `   `;
+    const label = i === pickerIdx ? `${BOLD}${themeNames[i]}${R}` : `${DIM}${themeNames[i]}${R}`;
+    term.writeln(`${marker}${label}`);
+  }
+  term.writeln(`${DIM}  ↑↓ navigate · Enter select · Esc cancel${R}`);
+}
+
+function clearPicker() {
+  // Move up and clear all picker lines
+  const lines = themeNames.length + 1;
+  for (let i = 0; i < lines; i++) term.write(`\x1b[A\x1b[2K`);
+  term.write(`\r\x1b[?25h`); // show cursor
+}
+
 function handleKey(key, code, ev) {
+  if (pickerActive) {
+    if (code === 38) { // Up
+      clearPicker();
+      pickerIdx = (pickerIdx - 1 + themeNames.length) % themeNames.length;
+      themeIdx = pickerIdx;
+      switchTheme();
+      renderPicker();
+    } else if (code === 40) { // Down
+      clearPicker();
+      pickerIdx = (pickerIdx + 1) % themeNames.length;
+      themeIdx = pickerIdx;
+      switchTheme();
+      renderPicker();
+    } else if (code === 13) { // Enter
+      clearPicker();
+      pickerActive = false;
+      term.writeln(`${GREEN}Theme: ${themeNames[themeIdx]}${R}`);
+      term.write(PROMPT);
+    } else if (code === 27 || (ev && ev.key === 'Escape')) { // Esc
+      clearPicker();
+      pickerActive = false;
+      term.write(PROMPT);
+    }
+    return;
+  }
   if (code === 13) { // Enter
     term.writeln('');
     if (input.trim()) history.unshift(input);
@@ -262,7 +362,7 @@ function handleKey(key, code, ev) {
     input = '';
     cursorPos = 0;
     historyIdx = -1;
-    term.write(PROMPT);
+    if (!pickerActive) term.write(PROMPT);
   } else if (code === 8) { // Backspace
     if (cursorPos > 0) {
       input = input.slice(0, cursorPos - 1) + input.slice(cursorPos);
