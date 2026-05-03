@@ -406,13 +406,17 @@ function handleKey(key, code, ev) {
 term.onKey(({ key, domEvent }) => handleKey(key, domEvent.keyCode, domEvent));
 
 // Mobile keyboard support
+const scrollToPrompt = () => document.getElementById('terminal').scrollIntoView({ block: 'end', behavior: 'smooth' });
+
 mobileInput.addEventListener('input', (e) => {
   if (e.data) for (const ch of e.data) handleKey(ch, 0, null);
   mobileInput.value = '';
+  scrollToPrompt();
 });
 mobileInput.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') { handleKey(null, 13, e); mobileInput.value = ''; }
   else if (e.key === 'Backspace') handleKey(null, 8, e);
+  scrollToPrompt();
 });
 
 // Swipe gestures for mobile
@@ -420,6 +424,13 @@ if (isMobile) {
   const termEl = document.getElementById('terminal');
   const initialHeight = window.innerHeight;
   const kbOpen = () => window.innerHeight < initialHeight * 0.75;
+
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', () => {
+      if (kbOpen()) termEl.scrollIntoView({ block: 'end', behavior: 'smooth' });
+    });
+  }
+
   let startX, startY;
   document.addEventListener('touchstart', (e) => {
     startX = e.touches[0].clientX;
