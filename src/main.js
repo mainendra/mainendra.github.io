@@ -183,7 +183,7 @@ Object.assign(toast.style, {
   opacity: '0', transition: 'opacity 0.3s', pointerEvents: 'none', zIndex: '10',
 });
 document.body.appendChild(toast);
-let toastTimer, moveStart;
+let toastTimer;
 
 function showKbToast() {
   toast.style.opacity = '1';
@@ -194,7 +194,7 @@ function showKbToast() {
 const termEl = document.getElementById('terminal');
 
 if (!isMobile) {
-  moveStart = { x: 0, y: 0 };
+  let moveStart = { x: 0, y: 0 };
   document.addEventListener('mousemove', (e) => {
     const d = Math.hypot(e.clientX - moveStart.x, e.clientY - moveStart.y);
     if (d > 100) { showKbToast(); moveStart = { x: e.clientX, y: e.clientY }; }
@@ -237,10 +237,6 @@ let input = '';
 let cursorPos = 0;
 const history = [];
 let historyIdx = -1;
-
-function clearLine() {
-  term.write(`\x1b[2K\r${PROMPT}`);
-}
 
 const allCmds = Object.keys(commands).concat(['clear']);
 
@@ -417,33 +413,20 @@ mobileInput.addEventListener('keydown', (e) => {
 
 // Swipe gestures for mobile
 if (isMobile) {
-  const termEl = document.getElementById('terminal');
-  const kbOpen = () => window.visualViewport
-    ? window.visualViewport.height < window.innerHeight * 0.75
-    : window.innerHeight < screen.height * 0.6;
   let startX, startY;
   document.addEventListener('touchstart', (e) => {
     startX = e.touches[0].clientX;
     startY = e.touches[0].clientY;
   }, { passive: true });
-  document.addEventListener('touchmove', (e) => {
-    if (!kbOpen()) e.preventDefault();
-  }, { passive: false });
   document.addEventListener('touchend', (e) => {
     const dx = e.changedTouches[0].clientX - startX;
     const dy = e.changedTouches[0].clientY - startY;
     const absDx = Math.abs(dx);
     const absDy = Math.abs(dy);
-    if (Math.max(absDx, absDy) < 30) return; // too short
-    if (absDx > absDy) {
-      // Horizontal swipe
-      if (absDx > 100) handleKey(null, 9, null); // long swipe = tab
-      else if (dx > 0) handleKey(null, 39, null); // right = cursor right
-      else handleKey(null, 37, null); // left = cursor left
-    } else if (!kbOpen()) {
-      // Vertical swipe — only history when keyboard is closed
-      if (dy < 0) handleKey(null, 38, null); // up = history prev
-      else handleKey(null, 40, null); // down = history next
-    }
+    if (Math.max(absDx, absDy) < 30 || absDy > absDx) return;
+    // Horizontal swipe
+    if (absDx > 100) handleKey(null, 9, null); // long swipe = tab
+    else if (dx > 0) handleKey(null, 39, null); // right = cursor right
+    else handleKey(null, 37, null); // left = cursor left
   }, { passive: true });
 }
