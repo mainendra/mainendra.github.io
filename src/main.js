@@ -418,8 +418,9 @@ mobileInput.addEventListener('keydown', (e) => {
 // Swipe gestures for mobile
 if (isMobile) {
   const termEl = document.getElementById('terminal');
-  const initialHeight = window.innerHeight;
-  const kbOpen = () => window.innerHeight < initialHeight * 0.75;
+  const kbOpen = () => window.visualViewport
+    ? window.visualViewport.height < window.innerHeight * 0.75
+    : window.innerHeight < screen.height * 0.6;
   let startX, startY;
   document.addEventListener('touchstart', (e) => {
     startX = e.touches[0].clientX;
