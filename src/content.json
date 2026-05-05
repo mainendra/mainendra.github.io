@@ -23,12 +23,12 @@
     "categories": [
       { "label": "Languages", "value": "JavaScript, TypeScript, HTML5, CSS3, Python*, Ruby*, Java*" },
       { "label": "Frameworks", "value": "React, Angular, BackboneJS, SolidJS*, Svelte*, LightningJS" },
-      { "label": "Runtime/API", "value": "Node.js, REST APIs, GraphQL*" },
+      { "label": "Runtime/API", "value": "Node.js, Bun, Deno, REST APIs, GraphQL*" },
       { "label": "Build Tools", "value": "Webpack, Gulp, Vite" },
       { "label": "Version Ctrl", "value": "Git, GitHub, GitLab" },
       { "label": "CI/CD", "value": "GitLab CI, GitHub Actions" },
       { "label": "Containers", "value": "Docker" },
-      { "label": "IDE", "value": "Vim, VS Code" },
+      { "label": "IDE", "value": "Neovim/Vim, VS Code" },
       { "label": "Debugging", "value": "Chrome & Firefox DevTools" },
       { "label": "Analytics", "value": "Kibana, Tableau" },
       { "label": "Project Mgmt", "value": "Jira" },
@@ -40,10 +40,10 @@
   "highlights": {
     "title": "Key Highlights",
     "items": [
-      { "label": "JavaScript & TypeScript", "text": "15+ years building applications using modern frameworks and libraries" },
+      { "label": "JavaScript & TypeScript", "text": "Extensive experience building applications across modern frameworks and libraries" },
       { "label": "Cross-Platform", "text": "Delivered apps for web, mobile, smart TVs (Samsung, LG, Fire TV, Android TV), Chromecast, Xbox, desktop" },
-      { "label": "Accessibility", "text": "7+ years improving inclusivity and WCAG compliance using NVDA, JAWS, and screen readers" },
-      { "label": "Automation", "text": "4+ years implementing UI test automation" },
+      { "label": "Accessibility", "text": "Strong advocate for inclusivity and WCAG compliance using NVDA, JAWS, and screen readers" },
+      { "label": "Automation", "text": "Proven track record implementing UI test automation" },
       { "label": "Debugging", "text": "Strong ability to troubleshoot, profile, and enhance performance in complex environments" },
       { "label": "Leadership", "text": "Agile workflows, code reviews, mentoring, and CI/CD best practices" }
     ]
