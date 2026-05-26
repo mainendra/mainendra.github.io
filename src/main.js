@@ -153,6 +153,7 @@ const term = new Terminal({
   fontSize: isMobile ? 12 : 14,
   theme: themes[themeNames[themeIdx]].xterm,
   cursorBlink: true,
+  cursorStyle: 'bar',
   scrollback: 0,
   allowProposedApi: true,
 });
