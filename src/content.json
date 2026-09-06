@@ -60,6 +60,16 @@
           "Accessibility via Speech Synthesis API, NVDA, JAWS (Windows), and VoiceOver (Mac)."
         ],
         "role": "Architecting, designing, development with accessibility support across platforms. Code reviews, mentoring, CI/CD, and maintaining design documentation."
+      },
+      {
+        "name": "Developer Tooling",
+        "subtitle": "Internal Tools for Developers, QA & Managers",
+        "description": [
+          "Designed and built a suite of internal tools that streamlined the team's cross-platform development and testing workflow.",
+          "Includes a device launcher and pairing tool, a WebSocket-based remote debugging tool capturing live DOM snapshots and app state, an API mocking and traffic inspection proxy, a device-specific profile/configuration manager, and an automated device health-monitoring scheduler.",
+          "Cut device setup and debugging time dramatically and became the team's standard workflow."
+        ],
+        "role": "End-to-end design and development. Gathered requirements from developers, QA, and managers, and delivered tooling that improved team productivity and visibility."
       }
     ]
   },
