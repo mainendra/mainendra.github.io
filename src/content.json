@@ -21,10 +21,10 @@
   "skills": {
     "title": "Technical Skills",
     "categories": [
-      { "label": "Languages", "value": "JavaScript, TypeScript, HTML5, CSS3, Python*, Ruby*, Java*" },
-      { "label": "Frameworks", "value": "React, Angular, BackboneJS, SolidJS*, Svelte*, LightningJS" },
+      { "label": "Languages", "value": "JavaScript, TypeScript, HTML5, CSS3, Rust*, Python*, Ruby*, Java*" },
+      { "label": "Frameworks", "value": "React, Angular, BackboneJS, SolidJS*, Svelte 5, LightningJS, Tauri" },
       { "label": "Runtime/API", "value": "Node.js, Bun, Deno, REST APIs, GraphQL*" },
-      { "label": "Build Tools", "value": "Webpack, Gulp, Vite" },
+      { "label": "Build Tools", "value": "Webpack, Gulp, Vite, Tailwind CSS" },
       { "label": "Version Ctrl", "value": "Git, GitHub, GitLab" },
       { "label": "CI/CD", "value": "GitLab CI, GitHub Actions" },
       { "label": "Containers", "value": "Docker" },
@@ -65,9 +65,9 @@
         "name": "Developer Tooling",
         "subtitle": "Internal Tools for Developers, QA & Managers",
         "description": [
-          "Designed and built a suite of internal tools that streamlined the team's cross-platform development and testing workflow.",
+          "Designed and built a suite of internal tools that streamlined the team's cross-platform development and testing workflow, delivered as a Tauri 2 desktop app (SvelteKit + Svelte 5 + TypeScript + Tailwind CSS) with a minimal Rust backend and standalone Bun-compiled sidecar binaries.",
           "Includes a device launcher and pairing tool, a WebSocket-based remote debugging tool capturing live DOM snapshots and app state, an API mocking and traffic inspection proxy, a device-specific profile/configuration manager, and an automated device health-monitoring scheduler.",
-          "Cut device setup and debugging time dramatically and became the team's standard workflow."
+          "Shipped as two build variants from a single codebase with a custom auto-update mechanism and versioned release pipelines. Cut device setup and debugging time dramatically and became the team's standard workflow."
         ],
         "role": "End-to-end design and development. Gathered requirements from developers, QA, and managers, and delivered tooling that improved team productivity and visibility."
       }
